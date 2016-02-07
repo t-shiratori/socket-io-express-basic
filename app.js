@@ -1,5 +1,5 @@
 /*
-* 
+*
 * reference:
 * http://socket.io/get-started/chat/
 *
@@ -14,12 +14,23 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+
+  console.log('-- connection --');
+  
+  //接続されたユーザー固有のID
+  console.log('id: ', socket.id);
+
+  //送信者以外にイベント送信
   socket.broadcast.emit('chat message', 'others start');
+
+  //イベント設定
   socket.on('chat message', function(msg){
     console.log('msg: ',msg);
     io.emit('chat message', msg);
   });
+
 });
+
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
