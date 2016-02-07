@@ -1,5 +1,5 @@
 {
-  "name": "socketio-express-basic",
+  "name": "socket-io-express-basic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
