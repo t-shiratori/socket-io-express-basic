@@ -33,7 +33,8 @@ io.on('connection', function(socket){
 
 });
 
-
+//herokuはポート番号を動的に生成する。
+//本番環境における動的なポート番号の生成をサポートするために、以下のように書かく。
 http.listen(process.env.PORT || 5000, function(){
   //console.log('Node app is running on port', app.get('port'));
 });
