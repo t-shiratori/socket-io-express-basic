@@ -11,9 +11,28 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
+      .roomData{
+        position: fixed;
+        top: 20px;
+        right: 50px;
+        background-color: #82E0FF;
+        width: 200px;
+        padding: 5px;
+      }
+      .roomData .ttl{
+        margin-bottom: 10px;
+        padding: 5px;
+        text-align: center;
+        background-color: #fff;
+      }
     </style>
   </head>
   <body>
+    <div class="roomData">
+      <p class="ttl">room data</p>
+      <p>部屋： <span class="name"></span></p>
+      <p>人数： <span class="num"></span></p>
+    </div>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -21,7 +40,31 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
+
+      //io()でもio.connect()でも返ってくるオブジェクトは同じ
+      //var socket = io();
+      var socket = io.connect();
+
+      //console.log('socket: ',socket);
+
+      //接続が成功すると実行される
+      socket.on("connect", function(socket){
+        //socket は undefined　つまり戻り値はない
+        //console.log('connect');
+      });
+
+      socket.on("onlySendClient", function(msg){
+        //console.log(msg);
+      });
+
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+
+      socket.on('getRoomData', function(room){
+        //console.log('getRoomData: ',room);
+        setRoomData(room);
+      });
 
       $('form').submit(function(){
         socket.emit('chat message', $('#m').val());
@@ -29,9 +72,10 @@
         return false;
       });
 
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
+      function setRoomData(room){
+        $('.roomData').find('.name').text(room.name);
+        $('.roomData').find('.num').text(room.data.length);
+      }
 
     </script>
   </body>
