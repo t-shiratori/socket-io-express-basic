@@ -12,9 +12,6 @@ var io = require('socket.io')(http);
 //ルームネーム
 var room1 = 'room0001';
 
-//ポート設定
-app.set('port', (process.env.PORT || 5000));
-
 //ルーティング
 app.get('/', function(req, res){
   res.sendfile('index.html');
