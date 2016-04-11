@@ -9,10 +9,6 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-// console.log('app: ',app);
-// console.log('http: ',http);
-// console.log('io: ',io);
-
 //ルームネーム
 var room1 = 'room0001';
 
