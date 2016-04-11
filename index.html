@@ -45,19 +45,20 @@
     <script>
 
       //io()でもio.connect()でも返ってくるオブジェクトは同じ
-      //var socket = io();
-      var socket = io.connect();
+      //var socket = io.connect();
+      var socket = io();
+
 
       //console.log('socket: ',socket);
 
       //接続が成功すると実行される
       socket.on("connect", function(socket){
         //socket は undefined　つまり戻り値はない
-        //console.log('connect');
+        console.log('connected');
       });
 
       socket.on("onlySendClient", function(msg){
-        //console.log(msg);
+        console.log(msg);
       });
 
       socket.on('chat message', function(msg){
