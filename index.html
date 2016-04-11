@@ -31,15 +31,19 @@
     </style>
   </head>
   <body>
+    
     <div class="roomData">
       <p class="ttl">room data</p>
       <p>部屋： <span class="name"></span></p>
       <p>人数： <span class="num"></span></p>
     </div>
+
     <ul id="messages"></ul>
+
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
