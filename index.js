@@ -41,8 +41,6 @@ app.get('/', function (req, res) {
 //io()でもio.sockets()でも同じ
 io.on('connection', function (socket) {
 
-  console.log(socket);
-
   //接続されたクライアントのソケットをルームに追加する
   socket.join(room1);
 
